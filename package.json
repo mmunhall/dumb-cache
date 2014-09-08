@@ -2,7 +2,7 @@
   "name": "dumb-cache",
   "version": "0.0.1",
   "description": "A stupid simple caching mechanism for JavaScript objects.",
-  "main": "index.js",
+  "main": "dumb-cache.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
