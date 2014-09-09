@@ -7,8 +7,15 @@ describe("Dumb Cache", function () {
     "use strict";
 
     describe('Constructor', function () {
+        it("should accept a string as the only parameter", function () {
+            var dc = new DumbCache("id");
+            dc.should.have.ownProperty("uniqueKeyName").equal("id");
+        });
+
         it("should throw error if a string is not passed as first parameter", function () {
-            throw ("not implemented");
+            (function () {
+                var dc = new DumbCache(1);
+            }).should.throw("First parameter, uniqueKeyName, must be a string.");
         });
 
         it("should accept a single object as second parameter", function () {

@@ -6,6 +6,10 @@ var find = require('lodash').find,
 function DumbCache(uniqueKeyName, initData) {
     "use strict";
 
+    if (typeof uniqueKeyName !== "string") {
+        throw new Error("First parameter, uniqueKeyName, must be a string.");
+    }
+
     this.cachedData = initData || [];
     this.uniqueKeyName = uniqueKeyName;
 }
