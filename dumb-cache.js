@@ -1,17 +1,29 @@
 /*global require:true, findWhere:true */
 
 var find = require('lodash').find,
-    cloneDeep = require('lodash').cloneDeep;
+    cloneDeep = require('lodash').cloneDeep,
+    isPlainObject = require('lodash').isPlainObject,
+    isArray = require('lodash').isArray,
+    each = require('lodash').each;
 
 function DumbCache(uniqueKeyName, initData) {
     "use strict";
+
+    this.cachedData = [];
 
     if (typeof uniqueKeyName !== "string") {
         throw new Error("First parameter, uniqueKeyName, must be a string.");
     }
 
-    this.cachedData = initData || [];
     this.uniqueKeyName = uniqueKeyName;
+
+    if (isPlainObject(initData)) {
+        // TODO: Init with object
+        this.add(initData);
+    } else if (isArray(initData)) {
+        // TODO: Init with Array
+        each(initData, this.add, this);
+    }
 }
 
 DumbCache.prototype.add = function (obj) {

@@ -10,6 +10,7 @@ describe("Dumb Cache", function () {
         it("should accept a string as the only parameter", function () {
             var dc = new DumbCache("id");
             dc.should.have.ownProperty("uniqueKeyName").equal("id");
+            dc.size().should.be.exactly(0);
         });
 
         it("should throw error if a string is not passed as first parameter", function () {
@@ -19,11 +20,13 @@ describe("Dumb Cache", function () {
         });
 
         it("should accept a single object as second parameter", function () {
-            throw ("not implemented");
+            var dc = new DumbCache("id", {id: 1, name: "Mike"});
+            dc.size().should.be.exactly(1);
         });
 
         it("should accept an array of objects as second parameter", function () {
-            throw ("not implemented");
+            var dc = new DumbCache("id", [{id: 1, name: "Mike"}, {id: 2, name: "Dorrie"}]);
+            dc.size().should.be.exactly(2);
         });
     });
 
