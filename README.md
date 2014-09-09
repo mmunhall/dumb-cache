@@ -68,7 +68,12 @@ Adds an object to the cache. If another object in the cache contains the same va
  
 **.remove(key)**
 
-Removes the object whose value for the property specified by `uniqueKeyName` matches `key`, if the object is found in
+Removes the object whose value for the property specified by `uniqueKeyName` matches `key` if an object is found in
+the cache.
+
+**.get(key)**
+
+Returns the object whose value for the property specified by `uniqueKeyName` matches `key` if an object is found in
 the cache.
 
 Maybe some day:
