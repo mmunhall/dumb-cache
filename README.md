@@ -65,6 +65,11 @@ array. See the notes `add()` method for information about how objects are added 
 Adds an object to the cache. If another object in the cache contains the same value for the property specified by
 `uniqueKeyName` then the object is not added. If the object does not contain a property `uniqueKeyName`, then the object
  is not added.
+ 
+**.remove(key)**
+
+Removes the object whose value for the property specified by `uniqueKeyName` matches `key`, if the object is found in
+the cache.
 
 Maybe some day:
 ---------------
