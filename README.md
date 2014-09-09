@@ -76,6 +76,19 @@ the cache.
 Returns the object whose value for the property specified by `uniqueKeyName` matches `key` if an object is found in
 the cache.
 
+**.clear()**
+
+Removes all objects from the cache.
+
+**.contains(key)**
+
+Returns a boolean indicating whether an object with a value of `key` for the property specified by `uniqueKeyName`
+exists in the cache.
+
+**.size()**
+
+Returns the number of objects in the cache.
+
 Maybe some day:
 ---------------
 * Specify whether comparisons should be made using === or ==.
