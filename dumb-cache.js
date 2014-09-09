@@ -4,7 +4,8 @@ var find = require('lodash').find,
     cloneDeep = require('lodash').cloneDeep,
     isPlainObject = require('lodash').isPlainObject,
     isArray = require('lodash').isArray,
-    each = require('lodash').each;
+    each = require('lodash').each,
+    remove = require('lodash').remove;
 
 function DumbCache(uniqueKeyName, initData) {
     "use strict";
@@ -42,7 +43,11 @@ DumbCache.prototype.add = function (obj) {
 DumbCache.prototype.remove = function (key) {
     "use strict";
 
-    return "Implement Me";
+    var self = this;
+
+    remove(this.cachedData, function (item) {
+        return item[self.uniqueKeyName] === key;
+    });
 };
 
 DumbCache.prototype.get = function (key) {
@@ -57,6 +62,16 @@ DumbCache.prototype.clear = function (key) {
     while (this.cachedData.length > 0) {
         this.cachedData.pop();
     }
+};
+
+DumbCache.prototype.contains = function (key) {
+    "use strict";
+
+    var self = this;
+
+    return find(self.cachedData, function (item) {
+        return item[self.uniqueKeyName] === key;
+    }) !== undefined;
 };
 
 DumbCache.prototype.size = function () {
