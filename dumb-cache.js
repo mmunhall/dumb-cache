@@ -1,4 +1,4 @@
-/*global require:true, findWhere:true */
+/*global require:true, findWhere:true, module:true */
 
 var find = require('lodash').find,
     cloneDeep = require('lodash').cloneDeep,
@@ -57,7 +57,7 @@ DumbCache.prototype.get = function (key) {
 
     return find(self.cachedData, function (item) {
         return item[self.uniqueKeyName] === key;
-    })
+    });
 };
 
 DumbCache.prototype.clear = function (key) {
