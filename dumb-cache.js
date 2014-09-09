@@ -2,13 +2,6 @@
 
 var _ = require('lodash');
 
-//    find = require('lodash').find,
-//    cloneDeep = require('lodash').cloneDeep,
-//    isPlainObject = require('lodash').isPlainObject,
-//    isArray = require('lodash').isArray,
-//    each = require('lodash').each,
-//    remove = require('lodash').remove;
-
 function DumbCache(uniqueKeyName, initData) {
     "use strict";
 
