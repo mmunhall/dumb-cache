@@ -53,7 +53,7 @@ DumbCache.prototype.get = function (key) {
     });
 };
 
-DumbCache.prototype.clear = function (key) {
+DumbCache.prototype.clear = function () {
     "use strict";
 
     while (this.cachedData.length > 0) {
