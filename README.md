@@ -40,6 +40,24 @@ Examples
 API
 ---
 
+### Constructor
+
+**DumbCache(uniqueKeyName)**
+Constructs an instance of DumbCache using uniqueKeyName as the name of the property used to identify the object. The
+cached is initialized as an empty array.
+
+**DumbCache(uniqueKeyName, object)**
+Constructs an instance of DumbCache using uniqueKeyName as the name of the property used to identify the object and
+object as the only item in the cache.
+
+**DumbCache(uniqueKeyName, array)**
+Constructs an instance of DumbCache using uniqueKeyName as the name of the property used to identify the object and
+all with all the objects in array as the items in the cache. See the notes `add()` method for information about how
+objects are added and which are ignored. 
+
+### Methods
+
+
 
 Maybe some day:
 ---------------
