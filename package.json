@@ -1,7 +1,7 @@
 {
   "name": "dumb-cache",
   "version": "0.0.1",
-  "description": "A stupid simple caching mechanism for JavaScript objects. Essentially, a quick and dirty implemention of a Set",
+  "description": "A stupid simple caching mechanism for JavaScript objects. Essentially, a quick and dirty implemention of a set.",
   "main": "dumb-cache.js",
   "scripts": {
     "test": "mocha"
