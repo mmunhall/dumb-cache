@@ -7,7 +7,7 @@ var find = require('lodash').find,
     each = require('lodash').each,
     remove = require('lodash').remove;
 
-function DumbCache(uniqueKeyName, initData) {
+function DumbCache(uniqueKeyName, initData) {ad
     "use strict";
 
     this.cachedData = [];

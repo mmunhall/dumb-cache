@@ -6,7 +6,7 @@ stored in the set. Objects stored are deep cloned and comparisons on the unique 
 these two facts, only primitives should be used as the unique key.
 
 Dumb Cache was developed to solve a particular caching problem and is not likely to be meet everyone's needs. There are
-certainly better caching libraries out there. If you need something very simple and your objects have all contain a
+certainly better caching libraries out there. If you need something very simple and each of your objects contains a
 property with the same name that can be used as a unique key, Dumb Cache make work for you. Otherwise... sorry.
 
 Examples
@@ -43,21 +43,28 @@ API
 ### Constructor
 
 **DumbCache(uniqueKeyName)**
+
 Constructs an instance of DumbCache using uniqueKeyName as the name of the property used to identify the object. The
 cached is initialized as an empty array.
 
 **DumbCache(uniqueKeyName, object)**
+
 Constructs an instance of DumbCache using uniqueKeyName as the name of the property used to identify the object and
 object as the only item in the cache.
 
 **DumbCache(uniqueKeyName, array)**
+
 Constructs an instance of DumbCache using uniqueKeyName as the name of the property used to identify the object and
-all with all the objects in array as the items in the cache. See the notes `add()` method for information about how
-objects are added and which are ignored. 
+all with all the objects in array as the items in the cache. Objects are added in the order they are stored in the
+array. See the notes `add()` method for information about how objects are added and which are ignored.
 
 ### Methods
 
+**.add(object)**
 
+Adds an object to the cache. If another object in the cache contains the same value for the property specified by
+`uniqueKeyName` then the object is not added. If the object does not contain a property `uniqueKeyName`, then the object
+ is not added.
 
 Maybe some day:
 ---------------
