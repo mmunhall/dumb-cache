@@ -1,11 +1,13 @@
 /*global require:true, findWhere:true, module:true */
 
-var find = require('lodash').find,
-    cloneDeep = require('lodash').cloneDeep,
-    isPlainObject = require('lodash').isPlainObject,
-    isArray = require('lodash').isArray,
-    each = require('lodash').each,
-    remove = require('lodash').remove;
+var _ = require('lodash');
+
+//    find = require('lodash').find,
+//    cloneDeep = require('lodash').cloneDeep,
+//    isPlainObject = require('lodash').isPlainObject,
+//    isArray = require('lodash').isArray,
+//    each = require('lodash').each,
+//    remove = require('lodash').remove;
 
 function DumbCache(uniqueKeyName, initData) {
     "use strict";
@@ -18,12 +20,10 @@ function DumbCache(uniqueKeyName, initData) {
 
     this.uniqueKeyName = uniqueKeyName;
 
-    if (isPlainObject(initData)) {
-        // TODO: Init with object
+    if (_.isPlainObject(initData)) {
         this.add(initData);
-    } else if (isArray(initData)) {
-        // TODO: Init with Array
-        each(initData, this.add, this);
+    } else if (_.isArray(initData)) {
+        _.each(initData, this.add, this);
     }
 }
 
@@ -33,10 +33,10 @@ DumbCache.prototype.add = function (obj) {
     var self = this,
         newObjKey = obj[this.uniqueKeyName],
         newObjHasKey = newObjKey !== undefined,
-        isUniqueObj = find(this.cachedData, function (item) { return item[self.uniqueKeyName] === newObjKey; }) === undefined;
+        isUniqueObj = _.find(this.cachedData, function (item) { return item[self.uniqueKeyName] === newObjKey; }) === undefined;
 
     if (newObjHasKey && isUniqueObj) {
-        this.cachedData.push(cloneDeep(obj));
+        this.cachedData.push(_.cloneDeep(obj));
     }
 };
 
@@ -45,7 +45,7 @@ DumbCache.prototype.remove = function (key) {
 
     var self = this;
 
-    remove(this.cachedData, function (item) {
+    _.remove(this.cachedData, function (item) {
         return item[self.uniqueKeyName] === key;
     });
 };
@@ -55,7 +55,7 @@ DumbCache.prototype.get = function (key) {
 
     var self = this;
 
-    return find(self.cachedData, function (item) {
+    return _.find(self.cachedData, function (item) {
         return item[self.uniqueKeyName] === key;
     });
 };
@@ -73,7 +73,7 @@ DumbCache.prototype.contains = function (key) {
 
     var self = this;
 
-    return find(self.cachedData, function (item) {
+    return _.find(self.cachedData, function (item) {
         return item[self.uniqueKeyName] === key;
     }) !== undefined;
 };
