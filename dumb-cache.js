@@ -38,7 +38,9 @@ DumbCache.prototype.get = function (key) {
 DumbCache.prototype.clear = function (key) {
     "use strict";
 
-    return "Implement Me";
+    while (this.cachedData.length > 0) {
+        this.cachedData.pop();
+    }
 };
 
 DumbCache.prototype.size = function () {
