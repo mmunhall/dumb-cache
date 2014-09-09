@@ -1,10 +1,10 @@
 {
   "name": "dumb-cache",
   "version": "0.0.1",
-  "description": "A stupid simple caching mechanism for JavaScript objects.",
+  "description": "A stupid simple caching mechanism for JavaScript objects. Essentially, a quick and dirty implemention of a Set",
   "main": "dumb-cache.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -14,7 +14,8 @@
     "JavaScript",
     "simple",
     "cache",
-    "caching"
+    "caching",
+    "set"
   ],
   "author": "Mike Munhall",
   "license": "MIT",
@@ -24,5 +25,9 @@
   "homepage": "https://github.com/mmunhall/dumb-cache",
   "dependencies": {
     "lodash": "^2.4.1"
+  },
+  "devDependencies": {
+    "mocha": "^1.21.4",
+    "should": "^4.0.4"
   }
 }
