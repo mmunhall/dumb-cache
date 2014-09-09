@@ -53,7 +53,11 @@ DumbCache.prototype.remove = function (key) {
 DumbCache.prototype.get = function (key) {
     "use strict";
 
-    return "Implement Me";
+    var self = this;
+
+    return find(self.cachedData, function (item) {
+        return item[self.uniqueKeyName] === key;
+    })
 };
 
 DumbCache.prototype.clear = function (key) {

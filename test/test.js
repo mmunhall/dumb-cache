@@ -1,6 +1,7 @@
 /*global require:true, describe:true, beforeEach:true, done:true, it:true */
 
 var DumbCache = require("../dumb-cache"),
+    assert = require('assert'),
     should = require('should');
 
 describe("Dumb Cache", function () {
@@ -62,7 +63,12 @@ describe("Dumb Cache", function () {
             });
 
             it("should store a deep copy of the object provided", function () {
-                throw new Error("implement me");
+                var objA = {id: 2, name: "Dorrie"},
+                    objB;
+
+                dc.add(objA);
+                objB = dc.get(2);
+                objA.should.not.equal(objB);
             });
         });
     });
@@ -98,17 +104,21 @@ describe("Dumb Cache", function () {
     });
 
     describe("#get()", function () {
-        var dc = new DumbCache("id", {id: 1, name: "Mike"});
-
         it("should return the object identified by key", function () {
-            throw new Error("implement me");
+            var dc = new DumbCache("id", {id: 1, name: "Mike"}),
+                objA = dc.get(1),
+                objB = dc.get(2);
+
+            objA.id.should.be.exactly(1);
+            objA.name.should.be.exactly("Mike");
+            assert(objB === undefined);
         });
     });
 
     describe("#contains()", function () {
-        var dc = new DumbCache("id", {id: 1, name: "Mike"});
-
         it("should return true if object is found using ===", function () {
+            var dc = new DumbCache("id", {id: 1, name: "Mike"});
+
             dc.contains(1).should.be.true;
             dc.contains(1.0).should.be.true;
             dc.contains(999).should.be.false;
@@ -118,9 +128,9 @@ describe("Dumb Cache", function () {
     });
 
     describe("#size()", function () {
-        var dc = new DumbCache("id", {id: 1, name: "Mike"});
-
         it("should give size of cacheData object", function () {
+            var dc = new DumbCache("id", {id: 1, name: "Mike"});
+
             dc.size().should.be.exactly(1);
             dc.add({id: 2, name: "Dorrie"});
             dc.size().should.be.exactly(2);
