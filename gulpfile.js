@@ -39,8 +39,8 @@ gulp.task('build', ['clean'], function () {
         .pipe(browserify({
             insertGlobals : false,
             debug : false
-        })).
-        on('prebundle', function (bundle) {
+        }))
+        .on('prebundle', function (bundle) {
             bundle.external('lodash');
         })
         .pipe(rename('dumb-cache-browser-' + version + '.js'))
