@@ -15,7 +15,10 @@ gulp.task('test', function () {
     "use strict";
 
     return gulp.src('test/test.js', {read: false})
-        .pipe(mocha({reporter: 'spec'}));
+        .pipe(mocha({
+            ui: 'bdd',
+            reporter: 'spec'
+        }));
 });
 
 gulp.task('build', function () {
@@ -29,7 +32,8 @@ gulp.task('build', function () {
     // For the browser
     gulp.src('src/dumb-cache.js')
         .pipe(browserify({
-            insertGlobals : true,
+            noParse: [require.resolve('./node_modules/lodash')],
+            insertGlobals : false,
             debug : false
         }))
         .pipe(rename('dumb-cache-browser.js'))
