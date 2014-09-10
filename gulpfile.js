@@ -32,7 +32,6 @@ gulp.task('build', function () {
     // For the browser
     gulp.src('src/dumb-cache.js')
         .pipe(browserify({
-
             insertGlobals : false,
             debug : false
         })).
