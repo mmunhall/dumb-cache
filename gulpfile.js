@@ -13,5 +13,5 @@ gulp.task('scripts', function () {
             insertGlobals : true,
             debug : !gulp.env.production
         }))
-        .pipe(gulp.dest('./build/js'));
+        .pipe(gulp.dest('./build'));
 });
