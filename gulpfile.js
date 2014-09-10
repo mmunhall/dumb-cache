@@ -5,11 +5,7 @@ var gulp = require('gulp'),
     mocha = require('gulp-mocha'),
     rename = require('gulp-rename');
 
-gulp.task('default', function () {
-    "use strict";
-
-    // place code for your default task here
-});
+gulp.task('default', ['test', 'build']);
 
 gulp.task('test', function () {
     "use strict";
