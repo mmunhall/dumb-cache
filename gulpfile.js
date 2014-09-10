@@ -32,10 +32,13 @@ gulp.task('build', function () {
     // For the browser
     gulp.src('src/dumb-cache.js')
         .pipe(browserify({
-            noParse: [require.resolve('./node_modules/lodash')],
+
             insertGlobals : false,
             debug : false
-        }))
+        })).
+        on('prebundle', function (bundle) {
+            bundle.external('lodash');
+        })
         .pipe(rename('dumb-cache-browser.js'))
         .pipe(gulp.dest('./build/'));
 });
