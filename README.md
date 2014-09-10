@@ -93,12 +93,19 @@ TODO
 ----
 
 * Change to Creative Commons license
-* Browserify via gulp
-* Build node.js version (i.e., copy src to build)
 * Update README with install notes
+* Minify version
+* Version number in built files
+* Code coverage with Istanbul
+* Bower
+* Put src in a IIFI
+* Make IDs 10000+ (looks like ordinals)
+
 
 Maybe some day:
 ---------------
+* Publish to npm
 * Specify whether comparisons should be made using === or ==.
 * Specify whether objects should be cloned.
+* Config block for {overwriteOnAdd: true|false, deepClone: true|false, compareWithEqEqEq: true|false
 
