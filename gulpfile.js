@@ -2,7 +2,8 @@
 
 var gulp = require('gulp'),
     browserify = require('gulp-browserify'),
-    mocha = require('gulp-mocha');
+    mocha = require('gulp-mocha'),
+    rename = require('gulp-rename');
 
 gulp.task('default', function () {
     "use strict";
@@ -20,10 +21,17 @@ gulp.task('test', function () {
 gulp.task('build', function () {
     "use strict";
 
-    gulp.src('dumb-cache.js')
+    // For Node.js
+    gulp.src('src/dumb-cache.js')
+        .pipe(rename('dumb-cache-node.js'))
+        .pipe(gulp.dest('./build/'));
+
+    // For the browser
+    gulp.src('src/dumb-cache.js')
         .pipe(browserify({
             insertGlobals : true,
-            debug : !gulp.env.production
+            debug : false
         }))
-        .pipe(gulp.dest('./build'));
+        .pipe(rename('dumb-cache-browser.js'))
+        .pipe(gulp.dest('./build/'));
 });

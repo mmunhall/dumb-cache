@@ -93,8 +93,9 @@ TODO
 ----
 
 * Change to Creative Commons license
-* Implement Browserify
-* Updated README with install notes
+* Browserify via gulp
+* Build node.js version (i.e., copy src to build)
+* Update README with install notes
 
 Maybe some day:
 ---------------
