@@ -4,6 +4,7 @@ var gulp = require('gulp'),
     browserify = require('gulp-browserify'),
     mocha = require('gulp-mocha'),
     rename = require('gulp-rename'),
+    clean = require('gulp-clean'),
     version = require('./package.json').version;
 
 gulp.task('default', ['test', 'build']);
@@ -16,6 +17,13 @@ gulp.task('test', function () {
             ui: 'bdd',
             reporter: 'spec'
         }));
+});
+
+gulp.task('clean', function () {
+    "use strict";
+
+    gulp.src('build/*', {read: false})
+        .pipe(clean({force: true}));
 });
 
 gulp.task('build', function () {

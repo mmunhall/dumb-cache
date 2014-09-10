@@ -5,6 +5,7 @@
   "main": "dumb-cache.js",
   "scripts": {
     "test": "gulp test",
+    "clean": "gulp clean",
     "build": "gulp build"
   },
   "repository": {
@@ -32,6 +33,7 @@
     "should": "^4.0.4",
     "gulp": "^3.8.8",
     "gulp-browserify": "^0.5.0",
-    "gulp-rename": "^1.2.0"
+    "gulp-rename": "^1.2.0",
+    "gulp-clean": "^0.3.1"
   }
 }
