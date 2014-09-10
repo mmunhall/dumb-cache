@@ -26,7 +26,7 @@ gulp.task('clean', function () {
         .pipe(clean({force: true}));
 });
 
-gulp.task('build', function () {
+gulp.task('build', ['clean'], function () {
     "use strict";
 
     // For Node.js
