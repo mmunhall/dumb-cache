@@ -89,6 +89,13 @@ exists in the cache.
 
 Returns the number of objects in the cache.
 
+TODO
+----
+
+* Change to Creative Commons license
+* Implement Browserify
+* Updated README with install notes
+
 Maybe some day:
 ---------------
 * Specify whether comparisons should be made using === or ==.
