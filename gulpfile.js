@@ -3,7 +3,8 @@
 var gulp = require('gulp'),
     browserify = require('gulp-browserify'),
     mocha = require('gulp-mocha'),
-    rename = require('gulp-rename');
+    rename = require('gulp-rename'),
+    version = require('./package.json').version;
 
 gulp.task('default', ['test', 'build']);
 
@@ -22,7 +23,7 @@ gulp.task('build', function () {
 
     // For Node.js
     gulp.src('src/dumb-cache.js')
-        .pipe(rename('dumb-cache-node.js'))
+        .pipe(rename('dumb-cache-node-' + version + '.js'))
         .pipe(gulp.dest('./build/'));
 
     // For the browser
@@ -34,6 +35,6 @@ gulp.task('build', function () {
         on('prebundle', function (bundle) {
             bundle.external('lodash');
         })
-        .pipe(rename('dumb-cache-browser.js'))
+        .pipe(rename('dumb-cache-browser-' + version + '.js'))
         .pipe(gulp.dest('./build/'));
 });
