@@ -11,30 +11,30 @@ property with the same name that can be used as a unique key, Dumb Cache make wo
 
 Examples
 --------
-    var objA = {id: 1, name: "Mike"},
-        objB = {id: 2, name: "Dorrie"},
-        objC = {id: 4, name: "Anna"},
+    var objA = {id: 10000, name: "Mike"},
+        objB = {id: 12000, name: "Dorrie"},
+        objC = {id: 15000, name: "Anna"},
         objE, // will be defined later in the example
         dumbCacheInstance = new DumbCache("id", [objA, objB]); // create an instance with an existing array of objects
 
-    assert(dumbCacheInstance.size() === 2);        // Get the size of the cache
+    assert(dumbCacheInstance.size() === 2);             // Get the size of the cache
 
-    dumbCacheInstance.add({id: 3, name: "Henry"}); // Add an object to the cache
-    dumbCacheInstance.add(objC);                   // Add another object
+    dumbCacheInstance.add({id: 19000, name: "Henry"}); // Add an object to the cache
+    dumbCacheInstance.add(objC);                       // Add another object
     assert(dumbCacheInstance.size() === 4);
 
-    dumbCacheInstance.remove(3);                   // Remove an object from the cache
+    dumbCacheInstance.remove(15000);                   // Remove an object from the cache
     assert(dumbCacheInstance.size() === 3);
 
-    objE = dumbCacheInstance.get(4);               // Get an object from the cache
-    assert(objE.id === 4);
+    objE = dumbCacheInstance.get(19000);               // Get an object from the cache
+    assert(objE.id === 19000);
     assert(objE.name === "Anna");
     assert(objE.id === objC.id);
-    assert(objE !== objC);                         // Objects are deep cloned!
+    assert(objE !== objC);                             // Objects are deep cloned!
 
-    assert(dumbCacheInstance.contains(1));         // Check whether the cache contains an object with unique key
+    assert(dumbCacheInstance.contains(10000));         // Check whether the cache contains an object with unique key
 
-    dumbCacheInstance.clear();                     // Reset the cache
+    dumbCacheInstance.clear();                         // Reset the cache
     assert(dumbCacheInstance.size() === 0);
     
 API
