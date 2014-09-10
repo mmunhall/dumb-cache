@@ -1,6 +1,6 @@
 /*global require:true, describe:true, beforeEach:true, done:true, it:true */
 
-var DumbCache = require("../dumb-cache"),
+var DumbCache = require("../src/dumb-cache"),
     assert = require('assert'),
     should = require('should');
 

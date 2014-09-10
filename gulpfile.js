@@ -17,7 +17,7 @@ gulp.task('test', function () {
         .pipe(mocha({reporter: 'spec'}));
 });
 
-gulp.task('browserify', function () {
+gulp.task('build', function () {
     "use strict";
 
     gulp.src('dumb-cache.js')
