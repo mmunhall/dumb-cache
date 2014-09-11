@@ -15,6 +15,7 @@ Examples
         objB = {id: 12000, name: "Dorrie"},
         objC = {id: 15000, name: "Anna"},
         objE, // will be defined later in the example
+        objF, // will be defined later in the example
         dumbCacheInstance = new DumbCache("id", [objA, objB]); // create an instance with an existing array of objects
 
     assert(dumbCacheInstance.size() === 2);            // Get the size of the cache
@@ -38,10 +39,20 @@ Examples
     assert(objE.id === objC.id);
     assert(objE !== objC);                             // Objects are deep cloned!
 
+    objF = dumbCacheInstance.findByProperty("name", "Anna"); // Objects can be retrieved by property
+    assert(objF.id === 15000);
+    assert(objF.name === "Anna");
+
+    objF = dumbCacheInstance.findByProperty("name", "ANNA", function (el) { // Objects can be retrieved by property,
+        return el.toLowerCase();                                            // providing an optional transformation
+    });                                                                     // function.
+    assert(objF.id === 15000);
+    assert(objF.name === "Anna");
+
     assert(dumbCacheInstance.contains(10000));         // Check whether the cache contains an object with unique key
-    
-                dumbCacheInstance.clear();                         // Reset the cache
-                assert(dumbCacheInstance.size() === 0);
+
+    dumbCacheInstance.clear();                         // Reset the cache
+    assert(dumbCacheInstance.size() === 0);
     
 API
 ---

@@ -208,7 +208,13 @@ describe("Dumb Cache", function () {
             assert(objE.id === objC.id);
             assert(objE !== objC);                             // Objects are deep cloned!
 
-            objF = dumbCacheInstance.findByProperty("name", "Anna") // Objects can be retrieved by property
+            objF = dumbCacheInstance.findByProperty("name", "Anna"); // Objects can be retrieved by property
+            assert(objF.id === 15000);
+            assert(objF.name === "Anna");
+
+            objF = dumbCacheInstance.findByProperty("name", "ANNA", function (el) { // Objects can be retrieved by property,
+                return el.toLowerCase();                                            // providing an optional transformation
+            });                                                                     // function.
             assert(objF.id === 15000);
             assert(objF.name === "Anna");
 
