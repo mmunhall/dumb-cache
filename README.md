@@ -118,11 +118,9 @@ TODO
 * Change to Creative Commons license
 * Update README with install notes
 * Minify version
-* Version number in built files
 * Code coverage with Istanbul
 * Bower
-* Put src in a IIFI
-* Make IDs 10000+ (looks like ordinals)
+* gulp-watch for changes and automatically `gulp build`
 
 
 Maybe some day:
