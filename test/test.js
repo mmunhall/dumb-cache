@@ -141,6 +141,15 @@ describe("Dumb Cache", function () {
             var objA = dc.findByProperty("foo", "bar");
             assert(objA === undefined);
         });
+
+        it("should call transform function if provided", function () {
+            var objA = dc.findByProperty("name", "MIKE", function (el) {
+                return el.toLowerCase();
+            });
+
+            objA.id.should.be.exactly(1);
+            objA.name.should.be.exactly("Mike");
+        });
     });
 
     describe("#contains()", function () {

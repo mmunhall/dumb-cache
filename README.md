@@ -82,10 +82,10 @@ the cache.
 Returns the object whose value for the property specified by `uniqueKeyName` matches `key` if an object is found in
 the cache.
 
-**.findByProperty(propertyName, value)**
+**.findByProperty(propertyName, value[, transformFn])**
 
-Returns the first object in the cache whose property named `propertyName` has a value matching `value`. Returns
-undefined if no objects are found.
+Returns the first object in the cache whose property named `propertyName` has a value matching `value`, optionally
+filtering both operands through a transformation function, `transformFn`. Returns undefined if no objects are found.
 
 **.clear()**
 

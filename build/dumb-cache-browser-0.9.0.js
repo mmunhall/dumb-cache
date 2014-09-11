@@ -62,11 +62,13 @@ DumbCache.prototype.get = function (key) {
     });
 };
 
-DumbCache.prototype.findByProperty = function (propertyName, value) {
+DumbCache.prototype.findByProperty = function (propertyName, value, transformFn) {
     "use strict";
 
+    transformFn = transformFn || function (el) { return el; };
+
     return _.find(this.cachedData, function (item) {
-        return item[propertyName] === value;
+        return transformFn(item[propertyName]) === transformFn(value);
     });
 };
 
