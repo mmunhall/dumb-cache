@@ -46,3 +46,8 @@ gulp.task('build', ['clean'], function () {
         .pipe(rename('dumb-cache-browser-' + version + '.js'))
         .pipe(gulp.dest('./build/'));
 });
+
+gulp.task('watch', function () {
+    gulp.watch('src/**/*.js', ['default']);
+    gulp.watch('test/**/*.js', ['default']);
+});

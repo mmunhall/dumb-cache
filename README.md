@@ -120,8 +120,6 @@ TODO
 * Minify version
 * Code coverage with Istanbul
 * Bower
-* gulp-watch for changes and automatically `gulp build`
-
 
 Maybe some day:
 ---------------
