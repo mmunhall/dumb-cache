@@ -6,31 +6,39 @@ var _ = require('lodash');
 function DumbCache(uniqueKeyName, initData) {
     "use strict";
 
-    this.cachedData = [];
+    initData = initData || [];
 
     if (typeof uniqueKeyName !== "string") {
         throw new Error("First parameter, uniqueKeyName, must be a string.");
     }
-
-    this.uniqueKeyName = uniqueKeyName;
-
-    if (_.isPlainObject(initData)) {
-        this.add(initData);
-    } else if (_.isArray(initData)) {
-        _.each(initData, this.add, this);
+    if (!_.isPlainObject(initData) && !_.isArray(initData)) {
+        throw new Error("Second parameter, initData, must be an array or a plain object.");
     }
+
+    this.cachedData = [];
+    this.uniqueKeyName = uniqueKeyName;
+    this.add(initData);
 }
 
 DumbCache.prototype.add = function (obj) {
     "use strict";
 
-    var self = this,
-        newObjKey = obj[this.uniqueKeyName],
-        newObjHasKey = newObjKey !== undefined,
-        isUniqueObj = _.find(this.cachedData, function (item) { return item[self.uniqueKeyName] === newObjKey; }) === undefined;
+    var self = this;
 
-    if (newObjHasKey && isUniqueObj) {
-        this.cachedData.push(_.cloneDeep(obj));
+    function _add(obj) {
+        var newObjKey = obj[self.uniqueKeyName],
+            newObjHasKey = newObjKey !== undefined,
+            isUniqueObj = _.find(self.cachedData, function (item) { return item[self.uniqueKeyName] === newObjKey; }) === undefined;
+
+        if (newObjHasKey && isUniqueObj) {
+            self.cachedData.push(_.cloneDeep(obj));
+        }
+    }
+
+    if (_.isPlainObject(obj)) {
+        _add(obj);
+    } else if (_.isArray(obj)) {
+        _.each(obj, _add, this);
     }
 };
 

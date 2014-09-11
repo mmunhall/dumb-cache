@@ -14,16 +14,20 @@ describe("Dumb Cache", function () {
             dc.size().should.be.exactly(0);
         });
 
-        it("should accept a string as the only parameter", function () {
-            var dc = new DumbCache("id");
-            dc.should.have.ownProperty("uniqueKeyName").equal("id");
-            dc.size().should.be.exactly(0);
-        });
-
         it("should throw error if a string is not passed as first parameter", function () {
             (function () {
                 var dc = new DumbCache(1);
             }).should.throw("First parameter, uniqueKeyName, must be a string.");
+        });
+
+        it("should throw error if second parameter is defined and is not an array or a plain object", function () {
+            (function () {
+                var dc = new DumbCache("id", 10);
+            }).should.throw("Second parameter, initData, must be an array or a plain object.");
+
+            (function () {
+                var dc = new DumbCache("id", "x");
+            }).should.throw("Second parameter, initData, must be an array or a plain object.");
         });
 
         it("should accept a single object as second parameter", function () {
@@ -46,20 +50,25 @@ describe("Dumb Cache", function () {
         });
 
         describe('add()', function () {
-            it("should add objects when the key values are unique", function () {
+            it("should add single object when the key value is unique", function () {
                 dc.add({id: 2, name: "Dorrie"});
-                dc.size().should.exactly(2);
+                dc.size().should.be.exactly(2);
             });
 
-            it("should not add objects when the key values are not unique", function () {
+            it("should not add single object when the key value is not unique", function () {
                 dc.add({id: 1, name: "Dorrie"});
-                dc.size().should.exactly(1);
+                dc.size().should.be.exactly(1);
             });
 
-            it("should not add objects without a unique key property", function () {
+            it("should not add single object without a unique key property", function () {
                 dc.add({ID: 1, name: "Dorrie"});
                 dc.add({name: "Dorrie"});
-                dc.size().should.exactly(1);
+                dc.size().should.be.exactly(1);
+            });
+
+            it("should add all objects of array when the values are unique", function () {
+                dc.add([{id: 1, name: "Mike"}, {id: 2, name: "Dorrie"}, {id: 3, name: "Henry"}]);
+                dc.size().should.be.exactly(3);
             });
 
             it("should store a deep copy of the object provided", function () {
@@ -149,14 +158,20 @@ describe("Dumb Cache", function () {
                 objE, // will be defined later in the example
                 dumbCacheInstance = new DumbCache("id", [objA, objB]); // create an instance with an existing array of objects
 
-            assert(dumbCacheInstance.size() === 2);             // Get the size of the cache
+            assert(dumbCacheInstance.size() === 2);            // Get the size of the cache
 
             dumbCacheInstance.add({id: 19000, name: "Henry"}); // Add an object to the cache
             dumbCacheInstance.add(objC);                       // Add another object
             assert(dumbCacheInstance.size() === 4);
 
+            dumbCacheInstance.add([                            // Add an array of objects to the cache
+                {id: 21000, name: "Cash"},
+                {id: 22000, name: "Simon"}
+            ]);
+            assert(dumbCacheInstance.size() === 6);
+
             dumbCacheInstance.remove(19000);                   // Remove an object from the cache
-            assert(dumbCacheInstance.size() === 3);
+            assert(dumbCacheInstance.size() === 5);
 
             objE = dumbCacheInstance.get(15000);               // Get an object from the cache
             assert(objE.id === 15000);

@@ -17,25 +17,31 @@ Examples
         objE, // will be defined later in the example
         dumbCacheInstance = new DumbCache("id", [objA, objB]); // create an instance with an existing array of objects
 
-    assert(dumbCacheInstance.size() === 2);             // Get the size of the cache
+    assert(dumbCacheInstance.size() === 2);            // Get the size of the cache
 
     dumbCacheInstance.add({id: 19000, name: "Henry"}); // Add an object to the cache
     dumbCacheInstance.add(objC);                       // Add another object
     assert(dumbCacheInstance.size() === 4);
 
-    dumbCacheInstance.remove(15000);                   // Remove an object from the cache
-    assert(dumbCacheInstance.size() === 3);
+    dumbCacheInstance.add([                            // Add an array of objects to the cache
+        {id: 21000, name: "Cash"},
+        {id: 22000, name: "Simon"}
+    ]);
+    assert(dumbCacheInstance.size() === 6);
 
-    objE = dumbCacheInstance.get(19000);               // Get an object from the cache
-    assert(objE.id === 19000);
+    dumbCacheInstance.remove(19000);                   // Remove an object from the cache
+    assert(dumbCacheInstance.size() === 5);
+
+    objE = dumbCacheInstance.get(15000);               // Get an object from the cache
+    assert(objE.id === 15000);
     assert(objE.name === "Anna");
     assert(objE.id === objC.id);
     assert(objE !== objC);                             // Objects are deep cloned!
 
     assert(dumbCacheInstance.contains(10000));         // Check whether the cache contains an object with unique key
-
-    dumbCacheInstance.clear();                         // Reset the cache
-    assert(dumbCacheInstance.size() === 0);
+    
+                dumbCacheInstance.clear();                         // Reset the cache
+                assert(dumbCacheInstance.size() === 0);
     
 API
 ---
