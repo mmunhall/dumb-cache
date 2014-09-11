@@ -124,6 +124,25 @@ describe("Dumb Cache", function () {
         });
     });
 
+    describe("#findByProperty()", function () {
+        var dc = new DumbCache("id", [{id: 1, name: "Mike"}, {id: 2, name: "Mike"}, {id: 3, name: "Dorrie", gender: "female"}]);
+
+        it("should return the first object identified by property", function () {
+            var objA = dc.findByProperty("name", "Dorrie"),
+                objB = dc.findByProperty("name", "Mike");
+
+            objA.id.should.be.exactly(3);
+            objA.name.should.be.exactly("Dorrie");
+            objB.id.should.be.exactly(1);
+            objB.name.should.be.exactly("Mike");
+        });
+
+        it("should return undefined if no objects are found", function () {
+            var objA = dc.findByProperty("foo", "bar");
+            assert(objA === undefined);
+        });
+    });
+
     describe("#contains()", function () {
         it("should return true if object is found using ===", function () {
             var dc = new DumbCache("id", {id: 1, name: "Mike"});
@@ -156,6 +175,7 @@ describe("Dumb Cache", function () {
                 objB = {id: 12000, name: "Dorrie"},
                 objC = {id: 15000, name: "Anna"},
                 objE, // will be defined later in the example
+                objF, // will be defined later in the example
                 dumbCacheInstance = new DumbCache("id", [objA, objB]); // create an instance with an existing array of objects
 
             assert(dumbCacheInstance.size() === 2);            // Get the size of the cache
@@ -178,6 +198,10 @@ describe("Dumb Cache", function () {
             assert(objE.name === "Anna");
             assert(objE.id === objC.id);
             assert(objE !== objC);                             // Objects are deep cloned!
+
+            objF = dumbCacheInstance.findByProperty("name", "Anna") // Objects can be retrieved by property
+            assert(objF.id === 15000);
+            assert(objF.name === "Anna");
 
             assert(dumbCacheInstance.contains(10000));         // Check whether the cache contains an object with unique key
 

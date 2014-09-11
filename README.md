@@ -82,6 +82,11 @@ the cache.
 Returns the object whose value for the property specified by `uniqueKeyName` matches `key` if an object is found in
 the cache.
 
+**.findByProperty(propertyName, value)**
+
+Returns the first object in the cache whose property named `propertyName` has a value matching `value`. Returns
+undefined if no objects are found.
+
 **.clear()**
 
 Removes all objects from the cache.
