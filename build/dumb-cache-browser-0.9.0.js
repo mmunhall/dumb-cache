@@ -62,6 +62,14 @@ DumbCache.prototype.get = function (key) {
     });
 };
 
+DumbCache.prototype.findByProperty = function (propertyName, value) {
+    "use strict";
+
+    return _.find(this.cachedData, function (item) {
+        return item[propertyName] === value;
+    });
+};
+
 DumbCache.prototype.clear = function () {
     "use strict";
 
